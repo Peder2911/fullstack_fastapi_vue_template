@@ -12,4 +12,4 @@ COPY  --from=frontend /frontend/dist /backend/static
 
 WORKDIR /backend
 RUN pip install -r requirements.txt
-CMD ["uvicorn","backend:app"]
+CMD ["uvicorn","backend:app","--host","0.0.0.0","--port","80"]
