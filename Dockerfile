@@ -12,4 +12,4 @@ COPY  --from=frontend /frontend/dist /backend/static
 
 WORKDIR /backend
 RUN pip install -r requirements.txt
-CMD ["uvicorn","backend:app","--host","0.0.0.0","--port","80"]
+CMD ["gunicorn","-b","0.0.0.0:80","-k","uvicorn.workers.UvicornWorker","--forwarded-allow-ips","*","--proxy-allow-from","*","backend:app"]
